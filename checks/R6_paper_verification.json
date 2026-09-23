@@ -1,0 +1,111 @@
+{
+  "words_checked": 9388,
+  "positive_preperiod_parity_checks": 4137,
+  "sqrt2_prefixes_checked": 6,
+  "sqrt2_approximation_checks": 6,
+  "sqrt2_repeat_lengths": [
+    [
+      60,
+      14,
+      27,
+      12
+    ],
+    [
+      150,
+      14,
+      27,
+      12
+    ],
+    [
+      400,
+      98,
+      152,
+      14
+    ],
+    [
+      1000,
+      545,
+      166,
+      20
+    ],
+    [
+      2500,
+      1462,
+      34,
+      21
+    ],
+    [
+      4000,
+      665,
+      3077,
+      24
+    ]
+  ],
+  "overlap_reduction_checks": 79401,
+  "fibonacci_complexity": {
+    "5": 6,
+    "10": 11,
+    "20": 21,
+    "40": 41,
+    "80": 81
+  },
+  "sturmian_decompositions": 207,
+  "sturmian_min_v_over_a_ell_log": 1.867,
+  "sturmian_extraction": [
+    [
+      204,
+      0,
+      21,
+      21,
+      21
+    ],
+    [
+      392,
+      0,
+      55,
+      55,
+      54
+    ],
+    [
+      1098,
+      0,
+      144,
+      144,
+      143
+    ],
+    [
+      3014,
+      0,
+      377,
+      377,
+      376
+    ],
+    [
+      8276,
+      0,
+      987,
+      987,
+      987
+    ]
+  ],
+  "sturmian_extraction_points": 5,
+  "sturmian_max_ell_ratio_over_ell_logu": 1.544,
+  "sturmian_max_log_t_over_jlog2j": 4.3923,
+  "admissible_points": 14,
+  "admissible_plane_pairs": 91,
+  "admissible_max_points_in_a_plane": 2,
+  "sturmian_points": 5,
+  "sturmian_plane_pairs": 10,
+  "sturmian_max_points_in_a_plane": 2,
+  "weight_bins_checked": 5,
+  "pointwise_local_inequalities": 5,
+  "sparse_height_interval_checks": 35,
+  "final_threshold_logN_u_lt_third": {
+    "0.2": 21.7500000000006,
+    "0.3": 152.77000000000604,
+    "0.32": 473.1199999997147
+  },
+  "final_threshold_u_0.34_holds_for_large_N": true,
+  "seconds": 181.1,
+  "passed": true
+}

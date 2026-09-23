@@ -1,0 +1,20 @@
+{
+  "scope": "Exact finite consistency only; no statistical or formal-proof claim.",
+  "words": 12964,
+  "repeat_candidates": 6670,
+  "positive_preperiods": 2890,
+  "nonprimitive_candidates": 1584,
+  "plane_checks": 90,
+  "plane_point_checks": 180,
+  "centered_weight_systems": 492,
+  "normalization_example": {
+    "b": 6,
+    "t": 4,
+    "r": 2,
+    "a": 2,
+    "g": 2,
+    "H": 648,
+    "Psi": 1296
+  },
+  "passed": true
+}
