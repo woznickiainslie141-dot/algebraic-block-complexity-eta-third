@@ -1,6 +1,6 @@
 {
   "date": "2026-09-23",
-  "revision": "AI disclosure added to public research draft; LaTeX rebuilt",
+  "revision": "Updated public AI disclosure wording; LaTeX rebuilt",
   "source": "block_complexity.tex",
   "pdf": "block_complexity.pdf",
   "pdf_pages": 13,
@@ -14,8 +14,8 @@
   "unused_bibliography_entries": [],
   "latex_warnings_or_box_issues": [],
   "unresolved_question_marks_in_pdf_text": false,
-  "pdf_sha256": "04d3dcfc9a1093a90690bf1e6a1e845afb7fa303e14f8451094834f8c7b59023",
-  "source_sha256": "fbeb244ef8a4c72382eae72b2b20e441ba3ce9d825abc55681159720b659a446",
+  "pdf_sha256": "6431f3f8cae2cb177ba22ec45304cfc16fa17c9f3d330935bb52396e8eeeda35",
+  "source_sha256": "88d325efbb77b5a8e039548ddf2fe0cd1577f0512f565cdb54e1e7b7a4ed9a0f",
   "scope": "Compilation and document consistency after disclosure edit; not independent mathematical refereeing or formal proof.",
   "passed": true
 }
