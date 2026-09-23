@@ -11,7 +11,11 @@ $$
 \qquad\text{for every }\eta<\tfrac13.
 $$
 
-It also states a refinement with a $(\log\log L)^\gamma$ factor for $\gamma>1$. It does **not** establish the lossless endpoint $\eta=1/3$, a bound at every sufficiently large $L$, normality, or a claim of priority.
+It also states a refinement with a $(\log\log L)^\gamma$ factor for $\gamma>1$. It does **not** establish the lossless endpoint $\eta=1/3$, a bound at every sufficiently large $L$, or normality.
+
+## Public version record
+
+This repository records the form of the argument made public on September 23, 2026. The [v0.1-preliminary release](https://github.com/woznickiainslie141-dot/algebraic-block-complexity-eta-third/releases/tag/v0.1-preliminary) identifies a specific version of the manuscript and supporting files. Later changes can be compared against that version. This record makes no claim about unpublished or undiscovered independent work; a comprehensive literature novelty search has not been completed.
 
 ## Materials
 
@@ -19,7 +23,7 @@ It also states a refinement with a $(\log\log L)^\gamma$ factor for $\gamma>1$. 
 - [Revision and counter-audit notes](paper/counteraudit_revision_20260914.md), [last internal proof check](paper/final_proof_check_20260913.md), [response on place transport](paper/place_transport_response_20260913.md), and [editorial history](paper/editorial_review_20260912.md).
 - [Finite check scripts and outputs](checks/). These test selected finite cases and bookkeeping only; they are not a proof of the asymptotic statement.
 
-The manuscript uses an empty author field. This repository does not attribute the proof to a human mathematician or claim that it has passed peer review.
+This repository is maintained by [@woznickiainslie141-dot](https://github.com/woznickiainslie141-dot). The manuscript currently has an empty author field.
 
 ## AI use and review status
 
@@ -28,3 +32,4 @@ GPT generated the overall proof strategy and was used to draft and internally ch
 ## Build and reproduce
 
 Run `pdflatex` twice in `paper/` to build the PDF from `block_complexity.tex`. The bibliography is included in the source, so BibTeX is not needed. The finite scripts use Python's standard library and can be run as `python checks/verify_R6_paper.py` and `python checks/verify_integer_base_extension.py` from the repository root.
+
