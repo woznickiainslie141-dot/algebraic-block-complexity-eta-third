@@ -17,7 +17,7 @@ It also states a refinement with a $(\log\log L)^\gamma$ factor for $\gamma>1$. 
 
 This repository records the form of the argument made public on September 23, 2026. The [v0.1-preliminary release](https://github.com/woznickiainslie141-dot/algebraic-block-complexity-eta-third/releases/tag/v0.1-preliminary) identifies a specific version of the manuscript and supporting files. Later changes can be compared against that version. This record makes no claim about unpublished or undiscovered independent work; a comprehensive literature novelty search has not been completed.
 
-The manuscript PDF and LaTeX source for that version are also archived as a [Zenodo preprint](https://doi.org/10.5281/zenodo.22961670) (version DOI: `10.5281/zenodo.22961670`). The Zenodo record lists Cheng Huang as its creator; the manuscript itself retains an empty author field.
+The manuscript PDF and LaTeX source for that version are also archived as a [Zenodo AI-generated research draft](https://doi.org/10.5281/zenodo.22961670) (version DOI: `10.5281/zenodo.22961670`). Zenodo requires a Creator entry for citation; its record lists Cheng Huang with the role **Distributor** to identify who shares and maintains this draft. The manuscript itself retains an empty author field and does not attribute the mathematical argument to a human author.
 
 ## Materials
 
