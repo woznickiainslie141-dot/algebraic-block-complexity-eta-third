@@ -1,0 +1,38 @@
+{
+  "date": "2026-09-19",
+  "page_count": 10,
+  "labels": 56,
+  "cross_references": 52,
+  "citations": 16,
+  "bibliography_entries": 3,
+  "duplicate_labels": [],
+  "undefined_references": [],
+  "undefined_citations": [],
+  "compiler_warnings": [],
+  "visual_review": {
+    "all_pages_reviewed_in_contact_sheet": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "detailed_pages": [
+      3,
+      4,
+      5
+    ],
+    "render_directory": "checks/rendered/general_20260919",
+    "finding": "No clipping, overlap or unreadable mathematical layout observed."
+  },
+  "sha256": {
+    "half_exponent.tex": "958cae0379e1095ed18371a6208ae5cced1a98189bbdba611d23e00e5924cc17",
+    "half_exponent.pdf": "48cf966a25b1a45baf8cc0318fc54b3f1f565a8ae767f4ba6e601a9c778c129d"
+  },
+  "scope": "Document integrity and visual QA only; not peer review or Lean verification."
+}

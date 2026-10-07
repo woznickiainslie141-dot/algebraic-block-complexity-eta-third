@@ -1,0 +1,129 @@
+{
+  "scope": "Finite algebra and coset checks, not a proof of the asymptotic theorem.",
+  "arrangements": [
+    {
+      "name": "quadratic_real",
+      "degree": 2,
+      "plane_checks": 8,
+      "line_checks": 6
+    },
+    {
+      "name": "cubic_one_real_two_nonreal",
+      "degree": 3,
+      "plane_checks": 10,
+      "line_checks": 8
+    },
+    {
+      "name": "quartic_two_real_two_nonreal",
+      "degree": 4,
+      "plane_checks": 12,
+      "line_checks": 10
+    },
+    {
+      "name": "five_distinct_form_parameters",
+      "degree": 5,
+      "plane_checks": 14,
+      "line_checks": 12
+    }
+  ],
+  "coset_cases": [
+    {
+      "degree": 2,
+      "complex_places": false,
+      "group_order": 2,
+      "mass_per_conjugate": "1/2"
+    },
+    {
+      "degree": 3,
+      "complex_places": false,
+      "group_order": 6,
+      "mass_per_conjugate": "1/3"
+    },
+    {
+      "degree": 3,
+      "complex_places": true,
+      "group_order": 6,
+      "mass_per_conjugate": "1/3"
+    },
+    {
+      "degree": 4,
+      "complex_places": true,
+      "group_order": 24,
+      "mass_per_conjugate": "1/4"
+    },
+    {
+      "degree": 5,
+      "complex_places": true,
+      "group_order": 120,
+      "mass_per_conjugate": "1/5"
+    }
+  ],
+  "base_cases": [
+    {
+      "base": 2,
+      "factorization": {
+        "2": 1
+      },
+      "normalized_prime_weight_sum": 1
+    },
+    {
+      "base": 4,
+      "factorization": {
+        "2": 2
+      },
+      "normalized_prime_weight_sum": 1
+    },
+    {
+      "base": 6,
+      "factorization": {
+        "2": 1,
+        "3": 1
+      },
+      "normalized_prime_weight_sum": 1
+    },
+    {
+      "base": 10,
+      "factorization": {
+        "2": 1,
+        "5": 1
+      },
+      "normalized_prime_weight_sum": 1
+    },
+    {
+      "base": 12,
+      "factorization": {
+        "2": 2,
+        "3": 1
+      },
+      "normalized_prime_weight_sum": 1
+    },
+    {
+      "base": 30,
+      "factorization": {
+        "2": 1,
+        "3": 1,
+        "5": 1
+      },
+      "normalized_prime_weight_sum": 1
+    },
+    {
+      "base": 72,
+      "factorization": {
+        "2": 3,
+        "3": 2
+      },
+      "normalized_prime_weight_sum": 1
+    },
+    {
+      "base": 210,
+      "factorization": {
+        "2": 1,
+        "3": 1,
+        "5": 1,
+        "7": 1
+      },
+      "normalized_prime_weight_sum": 1
+    }
+  ],
+  "checks_passed": true
+}

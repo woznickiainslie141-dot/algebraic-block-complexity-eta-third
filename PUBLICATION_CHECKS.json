@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-07",
+  "documents": {
+    "window": {
+      "source_sha256": "67043c6fb37e8b64d93727e0372c0290cb40eca1a26551cf0d8f4dd575d826eb",
+      "pdf_sha256": "f974654b96ccfd4db58e66919b66c0f3b7c042f0271ca77084fdcb779179a1d6",
+      "pages": 17,
+      "source_and_pdf_match_selected_originals": true,
+      "fresh_compilation_passes": 2,
+      "undefined_references_overfull_boxes_and_errors": [],
+      "duplicate_labels": false,
+      "scope": "Artifact integrity and document checks only; not mathematical verification.",
+      "visual_review": "All pages inspected in contact sheets; no clipping or overlap observed."
+    }
+  },
+  "selected_manuscript_date": "2026-09-30",
+  "general_weight_finite_algebra_passed": true,
+  "quadratic_weight_finite_algebra_passed": true,
+  "finite_algebra_scope": "Finite algebra and coset checks, not a proof of the asymptotic theorem.",
+  "not_certified": [
+    "moving-weight sparse-parameter theorem by finite tests",
+    "infinite asymptotic assertions by finite tests",
+    "independent peer review",
+    "complete Lean formalization",
+    "global optimality"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "plane_cases": [
+    {
+      "name": "generic",
+      "raw_weight": "-epsilon - 1"
+    },
+    {
+      "name": "A_plus_generic",
+      "raw_weight": "-epsilon - rho/2 - 1/2"
+    },
+    {
+      "name": "A_minus_generic",
+      "raw_weight": "-epsilon - rho/2 - 1/2"
+    },
+    {
+      "name": "L_plus",
+      "raw_weight": "-epsilon/2 - 1/2"
+    },
+    {
+      "name": "L_minus",
+      "raw_weight": "-epsilon/2 - 1/2"
+    },
+    {
+      "name": "B_generic",
+      "raw_weight": "-epsilon + rho - 1"
+    },
+    {
+      "name": "X1",
+      "raw_weight": "-epsilon"
+    },
+    {
+      "name": "X2",
+      "raw_weight": "-epsilon"
+    }
+  ],
+  "line_cases": [
+    {
+      "name": "neither_L_zero",
+      "raw_weight": "-epsilon"
+    },
+    {
+      "name": "one_L_zero_X2_zero",
+      "raw_weight": "-epsilon/2 - 1/2"
+    },
+    {
+      "name": "one_L_zero_X1_zero",
+      "raw_weight": "-epsilon/2 - rho/2"
+    },
+    {
+      "name": "both_L_zero",
+      "raw_weight": "rho - 1"
+    }
+  ],
+  "scope": "Finite exact algebra checks, not a proof of the asymptotic theorem.",
+  "normalization": true,
+  "product_exponent_below_minus_delta_over_12_by": "23*delta/1800",
+  "checks_passed": true
+}

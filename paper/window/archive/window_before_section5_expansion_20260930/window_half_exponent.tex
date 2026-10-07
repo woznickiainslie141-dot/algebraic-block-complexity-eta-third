@@ -1,0 +1,921 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.04in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs,booktabs,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Q}{\mathbb Q}\newcommand{\Z}{\mathbb Z}
+\newcommand{\Qbar}{\overline{\mathbb Q}}
+\newcommand{\eps}{\varepsilon}\newcommand{\LL}{\mathcal L}
+\newcommand{\HH}{\mathcal H}\newcommand{\wt}{\widehat}
+\DeclareMathOperator{\spanop}{span}
+\title{Window bounds for repetitions and block complexity\\of algebraic numbers}
+\author{}\date{}
+\hypersetup{pdftitle={Window bounds for repetitions and block complexity of algebraic numbers},pdfsubject={Research manuscript: fixed-support moving weights and dyadic quality layers}}
+\begin{document}\maketitle
+\begin{abstract}
+Let $\xi$ be a real algebraic irrational number and $b\ge2$ an integer.
+Write $R(L)$ for the length of the shortest prefix of its fractional
+base-$b$ expansion containing two occurrences of some word of length $L$,
+and $p(L)$ for its block complexity. For every fixed $\theta>1$ there is
+$c>0$ such that every sufficiently large interval $[X,X^\theta]$ contains
+an integer $L$ for which
+\[
+ R(L)>cL\sqrt{\frac{\log L}{\log\log L}},\qquad
+ p(L)>\frac c2L\sqrt{\frac{\log L}{\log\log L}}.
+\]
+Consequently the logarithmically weighted complexity limsup is infinite
+for every weight exponent $\gamma>1/2$. We also obtain windows
+$[X,X^{1+o(1)}]$ below this endpoint. The arithmetic input is a
+finite-support moving-weight sparse-parameter theorem proved here by
+adapting the auxiliary-polynomial argument of Evertse and Ferretti.
+The additional combinatorial step retains all dyadic prefix scales:
+when several scales yield the same approximation scale, their
+multiplicity gives an exponential improvement in approximation quality.
+Summing fixed-quality counting bounds removes a logarithmic loss without
+requiring an extension with a different smallness exponent at each point.
+\end{abstract}
+
+\section{Introduction}
+Fix a real algebraic irrational number $\xi$ and an integer $b\ge2$.
+We may assume $0<\xi<1$, and write
+$\xi=\sum_{i\ge1}d_ib^{-i}$, with $d_i\in\{0,\ldots,b-1\}$.
+Define
+\[
+ p(L)=\#\{d_{j+1}\cdots d_{j+L}:j\ge0\}.
+\]
+Following Bugeaud and Kim \cite{BK19}, let $R(L)$ be the least prefix
+length containing two, possibly overlapping, occurrences of a word
+of length $L$. We use $R$ rather than $r$ to distinguish this function
+from the preperiod length of a rational approximation. Pigeonholing gives
+\begin{equation}\label{eq:RvsP}
+ R(L)\le L+p(L).
+\end{equation}
+Indeed, the prefix of length $L+p(L)$ contains $p(L)+1$ starting
+positions for length-$L$ words. All logarithms without a subscript
+are natural, and iterated logarithms are used only for sufficiently
+large arguments.
+
+\begin{theorem}\label{thm:main}
+For every fixed $\theta>1$, there is a constant
+$c=c(\xi,b,\theta)>0$ such that, for every sufficiently large real $X$,
+there is an integer $L\in[X,X^\theta]$ satisfying
+\begin{equation}\label{eq:main}
+ R(L)>cL\sqrt{\frac{\log L}{\log\log L}},\qquad
+ p(L)>\frac c2L\sqrt{\frac{\log L}{\log\log L}}.
+\end{equation}
+\end{theorem}
+
+\begin{corollary}\label{cor:limsup}
+For each $g\in\{R,p\}$,
+\[
+ \limsup_{L\to\infty}
+ \frac{g(L)\sqrt{\log\log L}}{L\sqrt{\log L}}>0.
+\]
+For every $\gamma>1/2$ and every $\eta<1/2$,
+\begin{equation}\label{eq:weightedlimsup}
+ \limsup_{L\to\infty}
+ \frac{g(L)(\log\log L)^\gamma}{L\sqrt{\log L}}=\infty,
+ \qquad
+ \limsup_{L\to\infty}\frac{g(L)}{L(\log L)^\eta}=\infty.
+\end{equation}
+\end{corollary}
+
+The repetition-function statement is proved directly. Inequality
+\eqref{eq:RvsP} then transfers its lower bound to $p$; a lower bound
+for $p$ alone would not imply the repetition-function statement.
+
+\begin{theorem}\label{thm:nearwindow}
+Let $F(x)=(\log x)^u(\log\log x)^{-\gamma}$, where $u>0$, $\gamma\ge0$,
+and either $u<1/2$, or $u=1/2$ and $\gamma>1/2$.
+For every $C>0$ there is $A=A(\xi,b,C,u,\gamma)>0$ such that, for every
+sufficiently large $X$, the interval
+\begin{equation}\label{eq:nearwindow}
+ \left[X,\ X\exp\{A F(X)^2\log(2F(X))\}\right]
+\end{equation}
+contains an integer $L$ with both $R(L)>CLF(L)$ and $p(L)>CLF(L)$.
+Its upper endpoint is $X^{1+o(1)}$.
+\end{theorem}
+
+Adamczewski and Bugeaud proved $p(L)/L\to\infty$ for algebraic
+irrationals in integer bases \cite{AB07}. Bugeaud and Evertse proved
+the logarithmic limsup bound with $\eta<1/11$
+\cite[Theorem~2.1]{BE08}. The arithmetic argument here uses their
+repetition method and the semistable machinery of
+\cite[Sections~8--14]{EF13}. A fixed-weight theorem alone does not
+permit the exact ratio $\rho=r/t$ to vary from point to point.
+Section~\ref{sec:moving} proves the needed finite-support variant,
+including a bound for its height threshold; Section~\ref{sec:stable}
+checks semistability for every weight in the relevant family.
+
+The subsequent counting argument uses that theorem separately at each
+fixed quality. If $\mu$ dyadic prefix scales yield a single dyadic
+approximation scale, the largest prefix yields quality at least a
+constant times $2^\mu/B$. Summation over the multiplicity levels gives
+a bound $O(B^2\log(2B))$ for the original number of scales.
+This replaces greedy thinning of the prefix scales.
+The proof of this step is in Section~\ref{sec:layers}.
+
+Constants may depend on $\xi,b$, and on the fixed window or function
+parameters explicitly indicated. No effective numerical starting
+length or assertion uniform in varying algebraic numbers or bases
+is made. The endpoint statement is a positive limsup; it does not
+assert a positive lower bound at every sufficiently large length.
+
+\section{From repetitions to approximations}\label{sec:words}
+\begin{lemma}\label{lem:words}
+Suppose that the prefix of length $H$ contains two occurrences of a
+word of length $k$. Then there are integers $r,s,t,v,a$ such that
+\begin{equation}\label{eq:repeat}
+ t=r+s,\quad 0\le r<t,\quad t+v\le H,\quad s\ge v\ge k/3,
+ \qquad 0\le a\le b^t-b^r,
+\end{equation}
+and
+\begin{equation}\label{eq:approx}
+ |(b^t-b^r)\xi-a|\le b^{-v}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let $D$ be the difference of the two starting positions. If $D\ge k$,
+the two occurrences are disjoint and we take $v=k$. If $D<k$, their
+union is a word of length $k+D$ with period $D$. Its first two blocks
+of length $v'=D\lfloor(k+D)/(2D)\rfloor$ are equal and disjoint.
+Here $v'\ge k/3$: if $D\ge k/3$, use $v'\ge D$; otherwise use
+$v'>(k-D)/2$. Thus in either case the prefix has a decomposition
+$UVWVX$, with $v=|V|\ge k/3$.
+
+Put $r=|U|$, $s=|VW|$, $t=r+s$, and
+$A_j=\sum_{i=1}^jd_ib^{j-i}$, $A_0=0$. Set $a=A_t-A_r$.
+The number $a/(b^t-b^r)$ has expansion $U(VW)^\infty$ and agrees with
+$\xi$ through the first $t+v$ digits. Its distance from $\xi$ is at most
+$b^{-t-v}$, which proves \eqref{eq:approx}. If $P$ is the integer value
+of $VW$, then $a=(b^s-1)A_r+P$, giving $0\le a\le b^t-b^r$.
+The closed interval of values with a specified finite prefix also
+covers a periodic tail consisting entirely of the digit $b-1$.
+The remaining length bounds follow from the disjoint occurrences.
+\end{proof}
+
+\begin{lemma}[Repetitions in a prescribed window]\label{lem:windowwords}
+Let $2\le X<Y$, let $F$ be positive and nondecreasing on $[X,Y]$, and
+write $F_Y=F(Y)$. Suppose
+\[
+ R(k)\le CkF(k)\quad\text{for every integer }k\in[X,Y],
+ \qquad CF_Y\ge1.
+\]
+For each integer $i$ with $8CF_YX\le2^i\le Y$, there is an
+approximation satisfying \eqref{eq:repeat}--\eqref{eq:approx}, with
+$H=2^i$, such that
+\begin{equation}\label{eq:windowwords}
+ v_i\ge\frac{2^i}{24CF_Y},\qquad t_i\ge X/3.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Take $k_i=\lfloor2^i/(4CF_Y)\rfloor$. The lower bound on $2^i$ gives
+$k_i\ge2X-1\ge X$, and $CF_Y\ge1$ gives $k_i\le Y$.
+Thus $R(k_i)\le CF_Yk_i\le2^i/4$, so the prefix of length $2^i$
+contains the required repetition. Also
+$k_i\ge2^i/(8CF_Y)$. Lemma~\ref{lem:words} gives
+$v_i\ge k_i/3\ge2^i/(24CF_Y)$. Since $t_i\ge v_i$,
+the bound $t_i\ge X/3$ follows. All uses of the assumed upper bound
+for $R$ occur at lengths inside $[X,Y]$.
+\end{proof}
+
+\section{Twisted heights and the exact weights}\label{sec:height}
+For a number field $K$ write $M_K$ for its places, normalized by
+$\|z\|_v=|z|_p^{d_v}$ on $z\in\Q$ when $v\mid p$, where
+$d_v=[K_v:\Q_p]/[K:\Q]$ and $\sum_{v\mid p}d_v=1$.
+At an infinite place represented by an embedding $\sigma_v$ the
+corresponding formula is $\|z\|_v=|\sigma_v(z)|^{d_v}$.
+For a system of linearly independent forms
+$\LL=(L_{iv}:v\in M_K,1\le i\le3)$ and real weights $c_{iv}$, put
+\begin{equation}\label{eq:height}
+ H_{\LL,c,Q}(x)=\prod_{v\in M_K}
+ \max_{1\le i\le3}\bigl(\|L_{iv}(x)\|_vQ^{-c_{iv}}\bigr).
+\end{equation}
+For $x\in\Qbar^3$ use a finite extension $E/K$ containing its coordinates,
+keep the forms unchanged at $w\mid v$, and multiply the weights by
+$d(w\mid v)=[E_w:K_v]/[E:K]$. This gives an extension-independent height.
+
+Choose a finite Galois extension $K/\Q$ in $\mathbb C$ containing
+$\xi$, and let $G=\operatorname{Gal}(K/\Q)$ and
+$d=[\Q(\xi):\Q]\ge2$. Write $\beta_1,\ldots,\beta_d$ for the distinct
+conjugates of $\xi$. They are all nonzero.
+For each infinite place $v$, choose $\sigma_v\in G$ with
+$\|z\|_v=|\sigma_v(z)|^{d_v}$, and set $\beta_v=\sigma_v^{-1}(\xi)$.
+Define the fixed forms by
+\begin{equation}\label{eq:forms}
+ (L_{1v},L_{2v},L_{3v})=
+ \begin{cases}(X_1,X_2,L_{\beta_v}),&v\mid\infty,\\
+ (X_1,X_2,X_3),&v\nmid\infty,
+ \end{cases}
+ \quad L_\beta=-\beta X_1+\beta X_2+X_3.
+\end{equation}
+Their local determinants are all $1$, and there are $d+3$ distinct forms.
+For every rational vector $x$,
+\begin{equation}\label{eq:transport}
+ \|L_{\beta_v}(x)\|_v
+ =|\sigma_v(L_{\beta_v}(x))|^{d_v}=|L_\xi(x)|^{d_v}.
+\end{equation}
+This is the inverse-conjugate transport used in
+\cite[Section~5, equations (5.14)--(5.17)]{BE08}.
+It uses smallness only at the specified real value of $\xi$.
+
+\begin{lemma}[Mass of a conjugate]\label{lem:mass}
+For every conjugate $\beta$ of $\xi$,
+\begin{equation}\label{eq:mass}
+ \sum_{\substack{v\mid\infty\\\beta_v=\beta}}d_v=\frac1d.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let $\iota\in G$ be complex conjugation on $K$ and
+$H=\langle\iota\rangle$. Infinite places are represented by the right
+cosets $H\sigma$. Since $\xi$ is real,
+$(\iota\sigma)^{-1}(\xi)=\sigma^{-1}(\xi)$, so $\beta_v$ does not depend
+on the representative. The field $K$ is either totally real or totally
+imaginary, and $d_v=|H|/|G|$ in either case.
+The set of $\sigma\in G$ with $\sigma^{-1}(\xi)=\beta$ has cardinality
+$|G|/d$ by orbit--stabilizer. It is a union of right $H$-cosets, each of
+cardinality $|H|$. Its corresponding total place weight is therefore
+$(|G|/(d|H|))(|H|/|G|)=1/d$.
+\end{proof}
+
+For each rational prime $p\mid b$, put
+\begin{equation}\label{eq:primeweights}
+ \omega_p=\frac{\operatorname{ord}_p(b)\log p}{\log b},\qquad
+ \kappa_v=d_v\omega_p\quad(v\mid p).
+\end{equation}
+These numbers are positive and satisfy
+$\sum_{p\mid b}\omega_p=1$ and
+$\sum_{v\mid b}\kappa_v=1$, where $v\mid b$ means $v\mid p$ for some
+$p\mid b$. Let $S$ consist of all infinite places and all places above
+the prime divisors of $b$.
+
+Fix $0<\eps\le1/2$ and $0\le\rho\le1-\eps$. In the order of
+\eqref{eq:forms}, define raw weights by
+\begin{equation}\label{eq:raw}
+ e_v=\begin{cases}
+ d_v(1,\rho,-\eps),&v\mid\infty,\\
+ \kappa_v(-1,-\rho,0),&v\mid b,\\
+ (0,0,0),&v\notin S.
+ \end{cases}
+\end{equation}
+Put
+\begin{equation}\label{eq:center}
+ \overline e_v=\tfrac13\sum_i e_{iv},\quad D_\eps=1+\eps/3,
+ \quad c_{iv}(\rho)=\frac{e_{iv}-\overline e_v}{D_\eps},
+ \quad \delta=\frac{\eps}{3+\eps}.
+\end{equation}
+The two mass identities give
+\begin{equation}\label{eq:norm}
+ \sum_i c_{iv}=0,\qquad \sum_v\max_i c_{iv}=1,
+ \qquad \sum_v\overline e_v=-\eps/3.
+\end{equation}
+Indeed $\sum_{v,i}e_{iv}=-\eps$ and the sum of the raw local maxima
+is $1$; centering changes the latter to $1+\eps/3$.
+
+Consider any approximation satisfying \eqref{eq:repeat}--\eqref{eq:approx}.
+Choose $0<\eps\le\min(v/t,1/2)$ and put $\rho=r/t$.
+Since $t-r\ge v$, we have $\rho\le1-\eps$.
+Let $x=(b^t,b^r,a)$, $\Psi=b^t$, and $Q=\Psi^{D_\eps}$.
+At the infinite places, \eqref{eq:approx} and \eqref{eq:transport} give
+$\|L_{iv}(x)\|_v\le\Psi^{e_{iv}(\rho)}$.
+At a place $v\mid p\mid b$, the same bounds follow from
+\[
+ \|b^t\|_v=\Psi^{-\kappa_v},\qquad
+ \|b^r\|_v=\Psi^{-\kappa_v\rho},\qquad \|a\|_v\le1.
+\]
+At all other finite places the coordinates are integral. Hence
+\begin{equation}\label{eq:small}
+ H_{\LL,c(\rho),Q}(x)
+ \le\Psi^{\sum_v\overline e_v}=Q^{-\delta},
+ \qquad \delta=\frac{\eps}{3+\eps}.
+\end{equation}
+For a collection of such approximations with a common $\eps$, the
+condition $t_{j+1}>2t_j$ implies $Q_{j+1}>Q_j^2$.
+No primitivity of $x$ is needed: $\Psi$ is an external parameter,
+not an identification with its projective height.
+
+\section{Uniform semistability}\label{sec:stable}
+For a $q$-dimensional subspace $U\subset\Qbar^3$, define its local
+weight as the minimum of $\sum_{i\in I}c_{iv}$ over all $q$-element
+sets $I$ for which $(L_{iv}|_U)_{i\in I}$ is linearly independent.
+Its global weight $w_c(U)$ is the sum over places. The system is
+semistable if $w_c(U)\le0$ for every nonzero proper $U$.
+Define $w_e$ analogously. Centering gives
+\begin{equation}\label{eq:weightshift}
+ w_c(U)=\frac{w_e(U)+q\eps/3}{D_\eps}.
+\end{equation}
+
+\begin{proposition}\label{prop:stable}
+For the family \eqref{eq:raw}--\eqref{eq:center}, all nonzero proper
+subspaces have negative weight. More precisely,
+\[
+ w_c(U)\le-\frac{\eps}{6D_\eps}\quad(\dim U=1),\qquad
+ w_c(U)\le-\frac{\eps}{3D_\eps}\quad(\dim U=2).
+\]
+\end{proposition}
+\begin{proof}
+By Lemma~\ref{lem:mass}, the infinite-place contribution to $w_e(U)$
+can be computed using each distinct $L_\beta$ once, with raw weights
+$(1,\rho,-\eps)/d$. The finite contributions combine into one minimum
+calculation with coordinate forms and weights $(-1,-\rho,0)$, since
+$\sum_{v\mid b}\kappa_v=1$. This grouping concerns only the subspace
+weight calculation; all original places and norms remain in the height.
+
+Consider a line $U$. If no $L_\beta$ vanishes on it, its infinite
+contribution is $-\eps$ and its finite contribution is at most zero.
+If two distinct $L_\beta$ vanish, subtracting them shows
+$U=\langle(1,1,0)\rangle$; all $L_\beta$ then vanish and
+$w_e(U)=\rho-1\le-\eps$.
+Otherwise precisely one $L_\beta$ vanishes. If $X_1|_U\ne0$, the
+exceptional infinite contribution is at most $1/d$, the remaining
+infinite contribution is $-(1-1/d)\eps$, and the finite contribution
+is $-1$. Thus $w_e(U)\le-(1-1/d)(1+\eps)$.
+If $X_1|_U=0$, then $X_2|_U\ne0$ and
+$w_e(U)=-(1-1/d)(\rho+\eps)$.
+Since $d\ge2$, every line therefore has $w_e(U)\le-\eps/2$.
+
+For planes write $U=\ker M$, and put
+$A_\beta=\spanop(L_\beta,X_2)$ and $B=\spanop(X_1,X_2)$ in the dual
+space. For distinct conjugates $\beta,\beta'$,
+\[
+ A_\beta\cap A_{\beta'}=A_\beta\cap B=\langle X_2\rangle.
+\]
+This follows by comparing the $X_1$ and $X_3$ coefficients.
+At a grouped infinite place the minimum pair has weight
+$(\rho-\eps)/d$ unless $M\in A_\beta$; the finite minimum is
+$-1-\rho$ unless $M\in B$.
+The following list is exhaustive. Proportional normals are identified.
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}\toprule
+Position of $M$ & $w_e(\ker M)$\\\midrule
+$M\notin B\cup\bigcup_\beta A_\beta$ & $-1-\eps$\\
+$M\in A_\beta\setminus(\langle L_\beta\rangle\cup\langle X_2\rangle)$
+ & $-1-\eps+(1-\rho)/d$\\
+$M\in\langle L_\beta\rangle$ for some $\beta$ & $-(1-1/d)(1+\eps)$\\
+$M\in B\setminus(\langle X_1\rangle\cup\langle X_2\rangle)$ & $\rho-1-\eps$\\
+$M\in\langle X_1\rangle\cup\langle X_2\rangle$ & $-\eps$\\\bottomrule
+\end{tabular}
+\end{center}
+Each entry is at most $-\eps$, since $d\ge2$, $\eps\le1/2$ and
+$\rho\le1-\eps$.
+For example, at $M=L_\beta$ the pair for that conjugate must be
+$(X_1,X_2)$, whereas at $M=X_1$ the finite pair is $(X_2,X_3)$.
+These observations also cover the ties when $\rho=0$.
+Equation \eqref{eq:weightshift} proves both bounds.
+\end{proof}
+
+\section{A finite-support moving-weight bound}\label{sec:moving}
+We prove the arithmetic input separately. In this section $K$, $S$, and
+$\LL$ are fixed; the dimension is three. Assume $S$ is finite and contains
+all infinite places, $\LL$ is the coordinate system outside $S$, and the
+determinant at every place is $1$. Write $s=|S|$.
+Let $v_0\notin S$ be a fixed finite place.
+Weights called admissible below satisfy
+\begin{equation}\label{eq:admissible}
+ c_{iv}=0\ (v\notin S),\qquad
+ \sum_i c_{iv}=0,\qquad \sum_v\max_i c_{iv}\le1,
+ \qquad w_c(U)\le0\ (0\ne U\subsetneq\Qbar^3).
+\end{equation}
+
+\begin{theorem}\label{thm:sparse}
+There are constants depending only on the fixed data with the following
+property. For $0<\delta\le1$ there exist $\Omega(\delta)>2$ and
+$C_*(\delta)>e$ with
+\begin{equation}\label{eq:cutofforder}
+ \Omega(\delta)\ll\delta^{-5},\qquad
+ \log\log C_*(\delta)\ll\delta^{-2}\log(2/\delta),
+\end{equation}
+such that any sequence $(c^{(h)},Q_h)$ of admissible weights and parameters
+with
+\[
+ Q_1\ge C_*(\delta),\qquad Q_{h+1}>Q_h^{\Omega(\delta)},\qquad
+ \{x\ne0:H_{\LL,c^{(h)},Q_h}(x)\le Q_h^{-\delta}\}\ne\varnothing
+\]
+has length $O(\delta^{-2})$.
+\end{theorem}
+
+We first isolate the pointwise part of the proof in \cite{EF13}. This is
+needed to control the cutoff, rather than import the larger constant
+in their final interval theorem.
+
+\begin{lemma}[Pointwise exterior data]\label{lem:packet}
+There are constants $A_0>0$ and $c_0>0$, depending only on $K,\LL$, such
+that if $c$ is admissible, $Q\ge\exp(A_0/\delta)$ and
+$H_{\LL,c,Q}(x)\le Q^{-\delta}$ for some nonzero $x$, then there is
+$k\in\{1,2\}$ with the following properties. Put $N=\binom3k=3$.
+There are fixed exterior forms $\wt L_{lv}$, depending only on $k,\LL$,
+and independent vectors $z_1,z_2\in\Qbar^3$ spanning a plane $T$ such that
+\begin{equation}\label{eq:packetheight}
+ H_2(T)\ge Q^{c_0\delta}.
+\end{equation}
+For every place $w$ of a common finite extension $E/K$,
+\begin{equation}\label{eq:packetlocal}
+ \|\wt L_{lw}(z_j)\|_w\le
+ \begin{cases}Q^{d(w\mid v)a_{lv}},&w\mid v\ne v_0,\\
+ Q^{d(w\mid v_0)b_l},&w\mid v_0,
+ \end{cases}
+\end{equation}
+where, with $\gamma_v=\max_i c_{iv}$,
+\begin{equation}\label{eq:packetweights}
+ \sum_l a_{lv}=0,\quad |a_{lv}|\le2\gamma_v,\quad
+ a_{lv}=0\ (v\notin S),\quad
+ \sum_l b_l\le-\delta/3,\quad |b_l|\le3.
+\end{equation}
+Here $H_2$ is the absolute Euclidean height of the exterior coordinate
+vector defining a subspace, as in \cite[Section~6]{EF13}.
+\end{lemma}
+\begin{proof}
+Let $\lambda_1\le\lambda_2\le\lambda_3$ be the successive infima of the
+twisted height over $\Qbar$. The fixed-form comparison and the absolute
+Minkowski theorem \cite[Lemma~7.1 and Proposition~9.2]{EF13} give
+\begin{equation}\label{eq:minima}
+ C_0^{-1}Q^{-1}\le\lambda_1,\qquad
+ 3^{-3/2}\le\lambda_1\lambda_2\lambda_3\le8.
+\end{equation}
+The product bounds use the determinant assumption. As
+$\lambda_1\le Q^{-\delta}$, enlarging $A_0$ ensures $\lambda_3\ge1$.
+One of the two consecutive ratios is therefore at most $Q^{-\delta/2}$;
+fix such a $k$. Its infimum subspace $T_k$ has dimension $k$.
+
+For clarity we also give the height estimate behind this assertion.
+Choose a basis $g_1,\ldots,g_k$ with twisted heights arbitrarily close
+to $\lambda_1,\ldots,\lambda_k$, and at each place select an independent
+restricted $k$-tuple realizing its local minimum weight.
+Semistability and the determinant estimate imply that the product of
+these local determinant norms is at most
+$C\lambda_1\cdots\lambda_k\le C'Q^{-\delta/3}$.
+The last inequality follows from \eqref{eq:minima} and the gap, since
+$k(3-k)/6=1/3$ for $k=1,2$.
+Let $R\ge3$ bound the number of distinct original forms. Their nonzero
+$k$-fold determinants on the basis number at most $\binom Rk$.
+The product formula, applied to these determinants, gives the lower
+bound $(C''H_2(T_k))^{-(\binom Rk-1)}$ for the same product; this is
+also \cite[Lemma~10.2]{EF13}. The fixed constants can be absorbed when
+$\log Q\ge A_0/\delta$, giving
+$H_2(T_k)\ge Q^{c_0\delta}$, for example with
+$c_0=1/(12R^3)$ after increasing $A_0$.
+
+Apply Davenport's construction \cite[Lemma~11.3]{EF13} separately to
+this height and take the $(3-k)$th exterior power as in its
+equations (11.10)--(11.17). The exterior forms depend only on $k,\LL$.
+Away from $v_0$ the exponents $a_{lv}$ are sums of $3-k$ original weights;
+their sums are zero and $|a_{lv}|\le2\gamma_v$.
+The first $N-1=2$ exterior vectors span $T$, whose height equals
+$H_2(T_k)$ by \cite[Lemma~6.1]{EF13}.
+
+Here is the size check at the auxiliary place, including the cutoff.
+Let $\nu_l$ be the products of $3-k$ distinct successive infima.
+Up to a permutation, the bounds defining $Q^{b_l}$ are
+$3^{27}\nu_1,\ldots,3^{27}\nu_{N-1},3^{27}\nu_{N-1}$.
+Thus their product is
+\[
+ 3^{27N}(\lambda_1\lambda_2\lambda_3)^{\binom2{2-k}}
+       \frac{\lambda_k}{\lambda_{k+1}}
+ \le C Q^{-\delta/2}\le Q^{-\delta/3}.
+\]
+Also \eqref{eq:minima} bounds any product of $p=1,2$ distinct infima
+between $C^{-1}Q^{-p}$ and $C Q^{3-p}$. It follows that $|b_l|\le3$
+once $A_0$ is sufficiently large. All absorptions above have the form
+$Q^{a\delta}\ge C$ with fixed $a,C>0$, or $Q^a\ge C$.
+Consequently $\exp(A_0/\delta)$ suffices throughout; the final cutoff
+of \cite[Theorem~8.1]{EF13} has not been used.
+\end{proof}
+
+\subsection{The auxiliary polynomial with changing weights}
+Suppose $m$ of the parameters have the same $k$ in
+Lemma~\ref{lem:packet}; label them $h=1,\ldots,m$.
+Their exterior forms are consequently the same.
+Write $a_{hlv},b_{hl}$ for their exterior weights and set
+\begin{equation}\label{eq:Gamma}
+ \Gamma_v=\max_{1\le h\le m}\max_i c^{(h)}_{iv}.
+\end{equation}
+Each $\Gamma_v\ge0$, and admissibility gives
+\begin{equation}\label{eq:Gammasum}
+ \sum_{v\in S}\Gamma_v\le s.
+\end{equation}
+All ordinary-place vanishing conditions below are imposed only at
+places with $\Gamma_v>0$.
+
+Let $r_1,\ldots,r_m$ be positive integers, $D_r=\sum_h r_h$, and let
+$\mathcal U(r)$ consist of arrays $j=(j_{hl})$ of nonnegative integers
+with $\sum_l j_{hl}=r_h$ for each $h$. Put $V=|\mathcal U(r)|$.
+For $0<\alpha<1$ satisfying
+\begin{equation}\label{eq:mcondition}
+ m>2\alpha^{-2}\log(2s+2),
+\end{equation}
+there is a nonzero multihomogeneous polynomial $P$ over $K$, of block
+degrees $r_h$, with the following properties. Expand $P$ in the exterior
+forms at a place $v$, writing its coefficients as $d^{(v)}_j$.
+Then
+\begin{align}
+ d^{(v)}_j&=0 &&\text{if }\sum_{h,l}j_{hl}a_{hlv}/r_h\ge3m\alpha\Gamma_v,
+       \quad v\in S,\ \Gamma_v>0,\label{eq:vanishordinary}\\
+ d^{(v_0)}_j&=0 &&\text{if }\sum_{h,l}j_{hl}b_{hl}/r_h\ge-m\delta/9+3m\alpha,
+       \label{eq:vanishspecial}\\
+ H_2(P)&\le C_K A^{D_r}.&&\label{eq:polyheight}
+\end{align}
+Here and below $A\ge2$ and $C_K\ge1$ are fixed constants independent of
+$m,r,c^{(h)},Q_h$.
+
+To prove this, choose $j$ uniformly from $\mathcal U(r)$. The blocks are
+independent, and
+$r_h^{-1}\sum_l j_{hl}a_{hlv}$ has mean zero and lies in
+$[-3\Gamma_v,3\Gamma_v]$.
+Hoeffding's inequality therefore bounds the fraction satisfying the
+condition in \eqref{eq:vanishordinary} by $e^{-m\alpha^2/2}$.
+For the special place the mean of the total is at most $-m\delta/9$
+and the individual summands lie in $[-3,3]$, giving the same bound.
+This is precisely the block-dependent form of
+\cite[Lemma~13.3]{EF13}.
+The total number of imposed linear equations in the $V$ coefficients
+of $P$ is less than $V/2$ by \eqref{eq:mcondition}.
+The changes of coordinates use fixed matrices. Consequently each row
+of this linear system has height at most $A_1^{D_r}$ and
+$V\le(eN)^{D_r}$, uniformly in which equations were selected.
+The number-field Siegel lemma \cite[Lemma~13.1]{EF13}, with exponent
+$U/(V-U)<1$, gives \eqref{eq:polyheight} after increasing $A$.
+This proves all three assertions, without discretizing places or weights.
+
+For a derivative multi-index $i$, use divided derivatives
+$P_i=(\prod_{h,l}i_{hl}!)^{-1}\partial^iP$ and write
+\[
+ |i|_r=\sum_{h,l}i_{hl}/r_h.
+\]
+If $|i|_r\le2m\alpha$, expansion in the exterior forms gives
+\begin{align}
+ P_i&=\sum_jd^{(v)}_{i,j}\prod_{h,l}\wt L_{lv}(X_h)^{j_{hl}},
+       \label{eq:derivativeexp}\\
+ d^{(v)}_{i,j}&=0\quad\text{if }\sum_{h,l}j_{hl}a_{hlv}/r_h>12m\alpha\Gamma_v,
+       \quad v\in S,\label{eq:derivativeordinary}\\
+ d^{(v_0)}_{i,j}&=0\quad\text{if }\sum_{h,l}j_{hl}b_{hl}/r_h>
+                  -m\delta/9+12m\alpha,\label{eq:derivativespecial}\\
+ \prod_v\max_j\|d^{(v)}_{i,j}\|_v&\le C_K A_2^{D_r}.
+       \label{eq:derivativeheight}
+\end{align}
+Indeed a contributing original monomial has index $j+q$, where
+$\sum_lq_{hl}=\sum_li_{hl}$ in every block. Its weighted shift has
+absolute value at most $6m\alpha\Gamma_v$, or $6m\alpha$ at $v_0$.
+Either strict inequality above would therefore force that original
+coefficient to vanish by \eqref{eq:vanishordinary} or
+\eqref{eq:vanishspecial}. The coefficient bound follows from fixed
+inverse coordinate matrices and binomial coefficient bounds, exactly
+as in \cite[Lemma~13.4]{EF13}; combined with \eqref{eq:polyheight} these
+give a fixed $A_2$. At places outside $S\cup\{v_0\}$ all the weights
+are zero, so no vanishing condition is required.
+
+\subsection{Nonvanishing, the product formula, and the cutoff}
+We now prove Theorem~\ref{thm:sparse}. Choose
+\begin{equation}\label{eq:parameters}
+ \alpha=\frac{\delta}{1000(s+1)},\qquad
+ m=\left\lfloor2\alpha^{-2}\log(2s+2)\right\rfloor+1,
+ \qquad \Omega=\frac{4m^2}{\alpha}.
+\end{equation}
+There are only two possible $k$, so a sequence of at least $2m-1$
+parameters has a subsequence of $m$ parameters with the same $k$.
+Separation is preserved. Suppose such a subsequence exists and label
+it by $Q_1<\cdots<Q_m$.
+
+Choose an arbitrarily large positive integer $r_1$ with
+$r_1\log Q_1>\alpha^{-1}\log Q_m$ and $C_K\le2^{r_1}$, and put
+\[
+ r_h=\left\lceil\frac{r_1\log Q_1}{\log Q_h}\right\rceil\ (h>1),
+ \qquad B=Q_1^{r_1}.
+\]
+Then
+\begin{equation}\label{eq:degrees}
+ B\le Q_h^{r_h}<B^{1+\alpha},\quad r_h\le r_1,\quad
+ \frac{r_h}{r_{h+1}}>\frac{\Omega}{1+\alpha}\ge\frac{2m^2}{\alpha}.
+\end{equation}
+In particular the decreasing degree ratio has the direction required
+by \cite[Proposition~12.1, equation (12.3)]{EF13}.
+Construct $P$ as above. For each exterior plane $T_h$, use the grid
+\[
+ \mathcal G_h=\{u_1z_{h1}+u_2z_{h2}:u_j\in\Z,
+                    |u_j|\le\lceil N/\alpha\rceil\},\qquad N=3.
+\]
+Put $E_m=(N-1)(3m^2/\alpha)^m$ and $A_3=2eA$.
+By \eqref{eq:polyheight} and $C_K\le2^{r_1}$,
+$e^{D_r}H_2(P)\le A_3^{D_r}$.
+The other hypothesis of that nonvanishing proposition is
+\begin{equation}\label{eq:nonvanishheight}
+ H_2(T_h)^{r_h}\ge(e^{D_r}H_2(P))^{E_m}.
+\end{equation}
+By \eqref{eq:packetheight} and \eqref{eq:degrees} it is enough that
+\begin{equation}\label{eq:cutoffone}
+ c_0\delta\log Q_1\ge mE_m\log A_3.
+\end{equation}
+The proposition then supplies $x_h\in\mathcal G_h\setminus\{0\}$ and
+$|i|_r\le2m\alpha$ such that $P_i(x_1,\ldots,x_m)\ne0$.
+
+We estimate this value. For an infinite place $w$, let $s(w)$ be its
+local degree divided by $[E:\Q]$, and set $s(w)=0$ at finite places.
+The grid and \eqref{eq:packetlocal} give the extra factor
+\begin{equation}\label{eq:gridfactor}
+ \|\wt L_{lw}(x_h)\|_w\le
+ (N^2/\alpha)^{s(w)}Q_h^{d(w\mid v)a_{hlv}}\quad(w\nmid v_0),
+\end{equation}
+with the same bound at $w\mid v_0$ using $b_{hl}$ and no grid factor.
+The factor $N^2/\alpha$ is retained throughout.
+
+For a surviving monomial at $w\mid v\ne v_0$, put
+$A_{hw}=r_h^{-1}\sum_lj_{hl}d(w\mid v)a_{hlv}$ and
+$\Gamma_w=d(w\mid v)\Gamma_v$.
+The derivative degrees are at most $r_h$, so $|A_{hw}|\le3\Gamma_w$.
+Replacing $Q_h^{r_h}$ by $B$ costs at most $3m\alpha\Gamma_w$ in its
+exponent, by \eqref{eq:degrees}.
+Equation \eqref{eq:derivativeordinary} bounds the remaining sum by
+$12m\alpha\Gamma_w$. The resulting exponent is at most
+$15m\alpha\Gamma_w$.
+At $w\mid v_0$ the same argument using \eqref{eq:derivativespecial}
+gives at most $d(w\mid v_0)(-m\delta/9+15m\alpha)$.
+
+The number of monomials in a derivative is at most
+$V\le(eN)^{D_r}$. Multiplying the local bounds, using
+\eqref{eq:derivativeheight}, $\sum_ws(w)=1$,
+$\sum_{w\mid v}d(w\mid v)=1$, and \eqref{eq:Gammasum}, gives
+\begin{align}
+ \prod_w\|P_i(x_1,\ldots,x_m)\|_w
+ &\le G(\alpha)^{D_r}
+       (B^m)^{-\delta/9+15(s+1)\alpha}\notag\\
+ &\le G(\alpha)^{D_r}(B^m)^{-\delta/12},\label{eq:product}
+\end{align}
+where $G(\alpha)=2A_2eN^3/\alpha$. We used
+$C_K\le2^{r_1}\le2^{D_r}$.
+Since $D_r\le mr_1$, the right side is strictly less than $1$ if
+\begin{equation}\label{eq:cutofftwo}
+ \log Q_1\ge24\delta^{-1}\log G(\alpha).
+\end{equation}
+This contradicts the product formula for the nonzero value of $P_i$.
+
+For definiteness, all the required conditions hold with
+\begin{equation}\label{eq:explicitcutoff}
+ C_*(\delta)=\exp\left(
+ \frac{A_0+1}{\delta}
+ +\frac{2mE_m\log A_3}{c_0\delta}
+ +\frac{24\log G(\alpha)}{\delta}\right).
+\end{equation}
+As $m\ll\delta^{-2}$ and $\alpha\asymp\delta$,
+$\Omega\ll\delta^{-5}$ and
+\[
+ \log\log C_*(\delta)
+ \ll m\log(m/\alpha)+\log(2/\delta)
+ \ll\delta^{-2}\log(2/\delta).
+\]
+The maximum length is at most $2m-2$. This proves the theorem.
+
+\begin{corollary}\label{cor:count}
+Under the same hypotheses, suppose $Q_{h+1}>Q_h^2$.
+The number of parameters at or above $C_*(\delta)$ is
+$O(\delta^{-2}\log(2/\delta))$.
+\end{corollary}
+\begin{proof}
+Set $q=\lceil\log_2\Omega\rceil\ll\log(2/\delta)$ and partition the
+indices modulo $q$. In each part consecutive parameters satisfy the
+separation condition of Theorem~\ref{thm:sparse}. Apply its bound to
+each part.
+\end{proof}
+
+\section{Dyadic scales and fixed-quality layers}\label{sec:layers}
+Fix the forms and support from Section~\ref{sec:height}, and choose
+a finite place $v_0$ above a rational prime not dividing $b$.
+The admissibility requirements in Section~\ref{sec:moving} follow
+from \eqref{eq:norm} and Proposition~\ref{prop:stable}.
+
+\begin{lemma}[Counting all prefix scales]\label{lem:layers}
+There are constants $K_0,K_1>0$, depending only on $\xi,b$, with the
+following property. Let $B\ge2$ and let $I$ be a finite set of integers.
+For each $i\in I$, suppose there is an approximation satisfying
+\eqref{eq:repeat}--\eqref{eq:approx}, with $H=2^i$, such that
+\[
+ t_i\ge T,\qquad v_i\ge2^i/B.
+\]
+If
+\begin{equation}\label{eq:layerthreshold}
+ \log T\ge K_0B^2\log(2B),
+\end{equation}
+then
+\begin{equation}\label{eq:layercount}
+ |I|\le K_1B^2\log(2B).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Put $\tau_i=\lfloor\log_2t_i\rfloor$ and
+$\mu_\tau=\#\{i\in I:\tau_i=\tau\}$.
+For each nonempty class retain its largest index $i_\tau$ and that
+index's approximation. Since $t_i\le2^i$, every member satisfies
+$i\ge\tau$. The indices are distinct, so
+$i_\tau\ge\tau+\mu_\tau-1$. As $t_{i_\tau}<2^{\tau+1}$, this yields
+\begin{equation}\label{eq:multiplicityquality}
+ \frac{v_{i_\tau}}{t_{i_\tau}}
+ >\frac{2^{i_\tau-\tau-1}}B
+ \ge\frac{2^{\mu_\tau-2}}B.
+\end{equation}
+
+For each integer $j\ge1$ set
+\[
+ \mathcal T_j=\{\tau:\mu_\tau\ge j\},\quad N_j=|\mathcal T_j|,
+ \qquad \eps_j=\frac{2^{j-3}}B,\quad
+ \delta_j=\frac{\eps_j}{3+\eps_j}.
+\]
+Only levels with $N_j>0$ need consideration. At such a level,
+\eqref{eq:multiplicityquality} and $v_i/t_i\le1$ imply
+$2^{j-2}/B<1$, hence $0<\eps_j<1/2$.
+Every retained approximation in that level has $v_i/t_i>2\eps_j$,
+so \eqref{eq:small} applies with the common $\eps_j$ and $\delta_j$.
+
+Partition $\mathcal T_j$ according to the parity of $\tau$.
+In either part consecutive values differ by at least two. Thus their
+retained parameters satisfy
+$t_{\mathrm{next}}\ge2^{\tau+2}>2t_{\mathrm{previous}}$,
+and consequently $Q_{\mathrm{next}}>Q_{\mathrm{previous}}^2$.
+
+We verify the cutoff uniformly over all nonempty levels.
+We have $\delta_j\ge\delta_1=1/(12B+1)$.
+The function $\delta^{-2}\log(2/\delta)$ decreases on $(0,1]$;
+therefore \eqref{eq:cutofforder} gives
+\[
+ \log\log C_*(\delta_j)\ll B^2\log(2B).
+\]
+On the other hand, $Q=b^{D_{\eps_j}t}$ and $D_{\eps_j}\ge1$ give
+$\log\log Q\ge\log T+\log\log b$.
+Increasing $K_0$ in \eqref{eq:layerthreshold} puts every retained
+point above its level's cutoff. Monotonicity of $C_*$ itself is not needed.
+
+Apply Corollary~\ref{cor:count} to both parity classes. Since
+$\delta_j\ge2\eps_j/7$, it follows that
+\begin{equation}\label{eq:tailcount}
+ N_j\ll\delta_j^{-2}\log(2/\delta_j)
+ \ll B^2 4^{-j}\log(2B).
+\end{equation}
+The constants are uniform in $B,j$ and the approximations.
+Summation over multiplicity levels now gives
+\[
+ |I|=\sum_\tau\mu_\tau=\sum_{j\ge1}N_j
+ \ll B^2\log(2B)\sum_{j\ge1}4^{-j}
+ \ll B^2\log(2B),
+\]
+as required.
+\end{proof}
+
+\begin{remark}
+Each application of Corollary~\ref{cor:count} uses a fixed quality
+$\delta_j$. Changing the layer changes this common quality and the
+associated normalized heights. The uniform bound for the cutoffs
+makes this legitimate; no theorem for a chain with varying
+smallness exponents $\delta_h$ is used.
+\end{remark}
+
+\section{Window bounds and the endpoint}\label{sec:completion}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Fix $\theta>1$, let $Y=X^\theta$, and put
+$F(x)=\sqrt{\log x/\log\log x}$.
+Suppose that, throughout the integer lengths in $[X,Y]$,
+\begin{equation}\label{eq:windowLC}
+ R(k)\le CkF(k),
+\end{equation}
+where $C>0$ is a fixed constant to be chosen sufficiently small.
+Let $F_Y=F(Y)$, $B=24CF_Y$, and
+\[
+ I=\{i\in\Z:8CF_YX\le2^i\le Y\}.
+\]
+For sufficiently large $X$, $B\ge2$ and $CF_Y\ge1$.
+Lemma~\ref{lem:windowwords} provides the approximations needed in
+Lemma~\ref{lem:layers}, with $T=X/3$.
+The window buffer ensures that every invoked value of $R(k)$
+lies inside $[X,Y]$.
+
+For fixed $C,\theta$, the number of scales satisfies
+\begin{equation}\label{eq:windowscales}
+ |I|=\frac{\log(Y/X)}{\log2}-O(\log F_Y+|\log C|+1)
+ =\left(\frac{\theta-1}{\log2}+o(1)\right)\log X.
+\end{equation}
+Also
+\begin{equation}\label{eq:windowbudget}
+ B^2\log(2B)
+ =(288C^2+o(1))\log Y
+ =(288\theta C^2+o(1))\log X.
+\end{equation}
+Choose $C>0$ so small that
+\[
+ 288\theta K_0C^2<\tfrac12,\qquad
+ 288\theta K_1C^2<\frac{\theta-1}{2\log2}.
+\]
+Then $\log(X/3)\ge K_0B^2\log(2B)$ for sufficiently large $X$,
+and Lemma~\ref{lem:layers} applies.
+Its bound \eqref{eq:layercount} contradicts
+\eqref{eq:windowscales}--\eqref{eq:windowbudget}.
+Hence some integer $L\in[X,X^\theta]$ has $R(L)>CLF(L)$.
+By \eqref{eq:RvsP}, the same $L$ has
+$p(L)\ge R(L)-L>(C/2)LF(L)$ once $X$ is large enough.
+This proves the theorem with $c=C$.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:limsup}]
+Take, for example, $\theta=3/2$ in Theorem~\ref{thm:main}.
+The lengths provided tend to infinity with $X$, proving the positive
+limsup. Multiplying the resulting lower bounds by
+$(\log\log L)^{\gamma-1/2}$ proves the first assertion in
+\eqref{eq:weightedlimsup}; multiplying by
+$(\log L)^{1/2-\eta}/\sqrt{\log\log L}$ proves the second.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:nearwindow}]
+For the given $F$, we have $F(X)\to\infty$ and
+\begin{equation}\label{eq:subcritical}
+ F(X)^2\log(2F(X))=o(\log X).
+\end{equation}
+Fix $C_0>0$ and write
+\[
+ W=A F(X)^2\log(2F(X)),\qquad Y=Xe^W.
+\]
+For fixed $A$, equation \eqref{eq:subcritical} gives $W=o(\log X)$.
+Thus $\log Y/\log X\to1$. Substitution into the definition of $F$
+then yields $F(Y)/F(X)\to1$.
+
+Suppose $R(k)\le C_0kF(k)$ at all integer lengths in $[X,Y]$.
+Apply Lemma~\ref{lem:windowwords} with $B=24C_0F(Y)$ and
+$I=\{i:8C_0F(Y)X\le2^i\le Y\}$.
+Since $W/\log F(X)\to\infty$, we have
+\[
+ |I|=\left(\frac A{\log2}+o(1)\right)F(X)^2\log(2F(X)),
+ \qquad
+ B^2\log(2B)=(576C_0^2+o(1))F(X)^2\log(2F(X)).
+\]
+The threshold \eqref{eq:layerthreshold}, with $T=X/3$, holds by
+\eqref{eq:subcritical}. Choose $A>576K_1C_0^2\log2$.
+For all sufficiently large $X$, \eqref{eq:layercount} is then a
+contradiction. Thus some $L\in[X,Y]$ satisfies $R(L)>C_0LF(L)$.
+To obtain the assertion for the prescribed $C$, apply this with
+$C_0=2C$. For large $X$, \eqref{eq:RvsP} gives
+$p(L)>CLF(L)$ at the same $L$, as well as $R(L)>CLF(L)$.
+Finally \eqref{eq:subcritical} gives $Y=X^{1+o(1)}$.
+\end{proof}
+
+\section{Scope and the remaining losses}
+The arithmetic proof uses finite common support to impose simultaneous
+coefficient vanishing with $m=O(\delta^{-2})$, and an explicit check of
+semistability for the full family of exact weights. In particular,
+the moving-weight theorem is proved in Section~\ref{sec:moving}; it
+does not follow by simply applying the published fixed-weight theorem
+at each point. Nonreal conjugates and composite bases are handled by
+the mass and prime-weight identities in Section~\ref{sec:height}.
+
+The dyadic argument records multiplicity across prefix scales.
+It does not give an arithmetic bound for all pairs of equal words
+within one prefix. If $f_w$ counts the occurrences of a length-$k$
+word in a prefix of length $H$, then Cauchy--Schwarz gives
+\[
+ \sum_w f_w^2\ge\frac{(H-k+1)^2}{p(k)}.
+\]
+The repetition lemma only needs one pair; multiplicities of arbitrary
+pairs are not retained by the subsequent arithmetic construction.
+Lemma~\ref{lem:layers} instead retains the multiplicity of prefix
+scales through the quality gain \eqref{eq:multiplicityquality}.
+
+The exponent $1/2$ in the present estimates comes from
+\eqref{eq:mcondition}, together with $\alpha\asymp\delta$ in
+\eqref{eq:parameters}. Two additional restrictions each contribute
+one logarithm at the final scale: the nonvanishing threshold has
+$\log\log C_*\ll\delta^{-2}\log(2/\delta)$, and passing from
+$\Omega$-separation to ordinary doubling separation costs
+$q\asymp\log(2/\delta)$ in Corollary~\ref{cor:count}.
+These are separate requirements at the same order
+$B^2\log(2B)$; their logarithmic costs are not multiplied in the
+dyadic proof. Both requirements must be addressed to remove the
+remaining $\sqrt{\log\log L}$ denominator by this method.
+This identifies limitations of the argument given here, without
+asserting an obstruction to all other methods.
+
+The endpoint proof gives fixed-power windows with constants depending
+on their exponent. The proof of shrinking relative logarithmic
+windows uses \eqref{eq:subcritical}; it does not establish such windows
+at $u=\gamma=1/2$. No conclusion of positive entropy, disjunctivity,
+or normality follows from these block-complexity lower bounds.
+
+\begin{thebibliography}{9}
+\bibitem{AB07} B.~Adamczewski and Y.~Bugeaud,
+On the complexity of algebraic numbers I. Expansions in integer bases,
+\emph{Ann. of Math.} (2) \textbf{165} (2007), no.~2, 547--565.
+\href{https://doi.org/10.4007/annals.2007.165.547}{doi:10.4007/annals.2007.165.547}.
+\bibitem{BE08} Y.~Bugeaud and J.-H.~Evertse,
+On two notions of complexity of algebraic numbers,
+\emph{Acta Arith.} \textbf{133} (2008), no.~3, 221--250.
+\href{https://doi.org/10.4064/aa133-3-3}{doi:10.4064/aa133-3-3}.
+\bibitem{EF13} J.-H.~Evertse and R.~G.~Ferretti,
+A further improvement of the quantitative Subspace Theorem,
+\emph{Ann. of Math.} (2) \textbf{177} (2013), no.~2, 513--590.
+\href{https://doi.org/10.4007/annals.2013.177.2.4}{doi:10.4007/annals.2013.177.2.4}.
+\bibitem{BK19} Y.~Bugeaud and D.~H.~Kim,
+A new complexity function, repetitions in Sturmian words, and
+irrationality exponents of Sturmian numbers,
+\emph{Trans. Amer. Math. Soc.} \textbf{371} (2019), no.~5, 3281--3308.
+\href{https://doi.org/10.1090/tran/7378}{doi:10.1090/tran/7378}.
+\end{thebibliography}
+\end{document}
